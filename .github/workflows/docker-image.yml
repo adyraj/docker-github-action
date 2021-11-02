@@ -31,4 +31,4 @@ jobs:
         ECR_REPOSITORY: docker_image_demo
       run: |
         docker build . --file docker/Dockerfile --tag $ECR_REGISTRY/myimage:latest
-        docker push $ECR_REGISTRY/myimage:$IMAGE_TAG
+        docker push $ECR_REGISTRY/myimage:latest
