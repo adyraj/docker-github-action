@@ -18,13 +18,13 @@ data "aws_ecr_image" "service_image" {
   image_tag       = "latest"
 }
 
-# output "aws_ecr_image_info" {
-#   value = data.aws_ecr_image.service_image
-# }
+output "aws_ecr_image_info" {
+  value = data.aws_ecr_image.service_image
+}
 
-# data "aws_ecr_repository" "service" {
-#   name = "ecr-repository"
-# }
+data "aws_ecr_repository" "service" {
+  name = "ecr-repository"
+}
 
 # output "aws_ecr_repository_info" {
 #   value = data.aws_ecr_repository.service
