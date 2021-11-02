@@ -38,7 +38,7 @@ module "lambda_function_container_image" {
 
   create_package = false
 
-  image_uri = "data.aws_ecr_repository.service.arn:data.aws_ecr_image.service_image.image_tag"
-  # image_uri    = "442803386520.dkr.ecr.ap-south-1.amazonaws.com/docker_image_demo:latest"
+  # image_uri = "data.aws_ecr_repository.service.arn:data.aws_ecr_image.service_image.image_tag"
+  image_uri    = "442803386520.dkr.ecr.ap-south-1.amazonaws.com/docker_image_demo:latest"
   package_type = "Image"
 }
