@@ -19,7 +19,7 @@ data "aws_ecr_image" "service_image" {
 }
 
 output "aws_ecr_image_info" {
-  value = aws_ecr_image.service_image
+  value = data.aws_ecr_image.service_image
 }
 
 module "lambda_function_container_image" {
