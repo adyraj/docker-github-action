@@ -67,7 +67,8 @@ jobs:
 
   terraform:
     name: "Terraform"
-    needs: check
+    needs: [check, build]
+    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
