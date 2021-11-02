@@ -22,6 +22,14 @@ output "aws_ecr_image_info" {
   value = data.aws_ecr_image.service_image
 }
 
+data "aws_ecr_repository" "service" {
+  name = "ecr-repository"
+}
+
+output "aws_ecr_repository_info" {
+  value = data.aws_ecr_repository.service
+}
+
 module "lambda_function_container_image" {
   source = "terraform-aws-modules/lambda/aws"
 
