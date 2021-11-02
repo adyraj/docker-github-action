@@ -38,6 +38,7 @@ jobs:
 
   build:
     name: Build Image
+    needs: check
     runs-on: ubuntu-latest
     if: needs.check.outputs.run_job == 'true'
     steps:
