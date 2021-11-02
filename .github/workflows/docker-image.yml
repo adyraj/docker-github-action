@@ -67,7 +67,6 @@ jobs:
 
   terraform:
     name: "Terraform"
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
