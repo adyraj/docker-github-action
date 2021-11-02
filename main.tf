@@ -13,6 +13,15 @@ provider "aws" {
   region = "ap-south-1"
 }
 
+data "aws_ecr_image" "service_image" {
+  repository_name = "docker_image_demo"
+  image_tag       = "latest"
+}
+
+output "aws_ecr_image_info" {
+  value = aws_ecr_image.service_image
+}
+
 module "lambda_function_container_image" {
   source = "terraform-aws-modules/lambda/aws"
 
