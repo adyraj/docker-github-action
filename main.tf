@@ -23,12 +23,12 @@ output "aws_ecr_image_info" {
 }
 
 data "aws_ecr_repository" "service" {
-  name = "ecr-repository"
+  name = "docker_image_demo"
 }
 
-# output "aws_ecr_repository_info" {
-#   value = data.aws_ecr_repository.service
-# }
+output "aws_ecr_repository_info" {
+  value = data.aws_ecr_repository.service
+}
 
 module "lambda_function_container_image" {
   source = "terraform-aws-modules/lambda/aws"
