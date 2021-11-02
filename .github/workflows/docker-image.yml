@@ -28,7 +28,7 @@ jobs:
           do
             echo $file
             if [[ $file != docker/* ]]; then
-              echo "This modified file is not under the 'db' folder."
+              echo "This modified file is not under the 'docker' folder."
               echo "::set-output name=run_job::false"
               break
             else
@@ -68,7 +68,7 @@ jobs:
   terraform:
     name: "Terraform"
     needs: [check, build]
-    if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
+    # if: ${{ always() && contains(needs.*.result, 'success') && !(contains(needs.*.result, 'failure')) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
