@@ -6,5 +6,3 @@ variable "imageuri" {
     type = string
 }
 
-variable "env" {
-}

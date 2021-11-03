@@ -8,7 +8,7 @@ data "aws_ecr_repository" "service" {
 }
 
 resource "aws_iam_role_policy" "lambda_policy" {
-  name   = "lambda_policy_${var.env}"
+  name   = "lambda_policy"
   role   = aws_iam_role.lambda_role.id
   policy = jsonencode({
     "Version": "2012-10-17",
@@ -25,7 +25,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
   )
 }
 resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_role_${var.env}"
+  name               = "lambda_role"
   assume_role_policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
@@ -56,21 +56,16 @@ resource "aws_iam_role" "lambda_role" {
 # }
 
 resource "aws_lambda_function" "lambda_function_container_image" {
-  function_name = "${var.functionname}-${var.env}"
+  function_name = var.functionname
   description   = "My awesome lambda function"
   role          = aws_iam_role.lambda_role.arn
-
-  # The filebase64sha256() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
-  # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
-  #source_code_hash = filebase64sha256("lambda_function_payload.zip")
 
   image_uri = var.imageuri
   package_type = "Image"
 
   environment {
     variables = {
-      env = "${var.env}"
+      env = "dev"
     }
   }
 }
