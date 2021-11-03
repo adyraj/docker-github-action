@@ -93,12 +93,12 @@ jobs:
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: terraform validate -var="env=dev" -no-color
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: terraform plan -var="env=dev" -no-color
         continue-on-error: true
 
       # - uses: actions/github-script@0.9.0
