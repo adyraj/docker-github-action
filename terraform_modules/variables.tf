@@ -1,7 +1,7 @@
 variable "functionname" {
-    type = String
+    type = string
 }
 
 variable "imageuri" {
-    type = String
+    type = string
 }
