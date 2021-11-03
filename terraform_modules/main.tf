@@ -11,7 +11,7 @@ data "aws_ecr_repository" "service" {
 module "lambda_function_container_image" {
   source = "terraform-aws-modules/lambda/aws"
 
-  function_name = var.fun_name
+  function_name = var.functionname
   description   = "My awesome lambda function"
 
   create_package = false
