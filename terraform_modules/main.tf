@@ -10,11 +10,36 @@ data "aws_ecr_repository" "service" {
 resource "aws_iam_role_policy" "lambda_policy" {
   name   = "lambda_policy"
   role   = aws_iam_role.lambda_role.id
-  policy = "${file("./iam/lambda_policy.json")}"
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Sid": "Stmt1635938747595",
+        "Action": "logs:*",
+        "Effect": "Allow",
+        "Resource": "*"
+    }
+  ]
+}
+
+  )
 }
 resource "aws_iam_role" "lambda_role" {
   name               = "lambda_role"
-  assume_role_policy = "${file("/home/runner/work/docker-github-action/docker-github-action/terraform_modules/lambda_assume_role_policy.json")}"
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+            "Service": "lambda.amazonaws.com"
+        },
+        "Effect": "Allow",
+        "Sid": ""
+        }
+      ]
+    }
+  )
 }
 
 
