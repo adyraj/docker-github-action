@@ -5,3 +5,7 @@ variable "functionname" {
 variable "imageuri" {
     type = string
 }
+
+variable "env" {
+    type = string
+}
