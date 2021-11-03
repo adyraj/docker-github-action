@@ -70,7 +70,7 @@ resource "aws_lambda_function" "lambda_function_container_image" {
 
   environment {
     variables = {
-      env = "dev"
+      env = "${var.env}"
     }
   }
 }
