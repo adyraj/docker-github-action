@@ -23,8 +23,8 @@ jobs:
         env:
           ECR_REPOSITORY: test_repo
         run: |
-          aws ecr create-repository --repository-name test_repo1
-          aws ecr create-repository --repository-name test_repo2
+          aws ecr create-repository --repository-name test_repo1 > /dev/null
+          aws ecr create-repository --repository-name test_repo2 > /dev/null
 
       - name: Login to Amazon ECR
         id: login-ecr
