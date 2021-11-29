@@ -23,20 +23,22 @@ jobs:
         env:
           ECR_REPOSITORY: test_repo
         run: aws ecr create-repository --repository-name test_repo1 > /dev/null
+        continue-on-error: true
 
       - name: Create repository
-        if: always()
+        # if: always()
         env:
           ECR_REPOSITORY: test_repo
         run: aws ecr create-repository --repository-name test_repo2 > /dev/null
+        continue-on-error: true
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        if: always()
+        # if: always()
 
       - name: Build, tag, and push image to Amazon ECR
-        if: always()
+        # if: always()
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: test_repo1
@@ -46,7 +48,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Build, tag, and push image to Amazon ECR
-        if: always()
+        # if: always()
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: test_repo2
